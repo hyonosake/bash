@@ -48,13 +48,13 @@ FLAGS = -g -MMD \
 		-fsanitize=address
 
 .c.o:
-			$(CC)  $(FLAGS) -c -I minishell.h  $(LLRD_INC) $< -o ${<:.c=.o} 
+			$(CC)  $(FLAGS) -c -I minishell.h  $(LRD_INC) $< -o ${<:.c=.o} 
 
 #$(LIB)		make bonus -C libft
 
 $(NAME):	$(OBJS)
 			make -C libft
-			$(CC)  $(FLAGS) $(OBJS) libft/libft.a -o $(NAME) $(LLRD_LIB)
+			$(CC)  $(FLAGS) $(OBJS) libft/libft.a -o $(NAME) $(LRD_LIB)
 	@echo	"MS created"
 
 all:		$(NAME)

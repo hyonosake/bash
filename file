@@ -1,0 +1,3 @@
+., .., .git, Makefile, README.md, builtins, exec, file, includes, lexer, 
+libft, minishell, minishell.c, minishell.d, minishell.o, out.test, out.txt, 
+parser, utils, vars
