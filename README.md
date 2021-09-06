@@ -36,3 +36,5 @@ This implementation has it's own built-in functions, such as
   	◦ env with no options or arguments
 	
  	 ◦ exit with no options
+
+![](.sh.gif)
