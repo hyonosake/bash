@@ -60,6 +60,7 @@ void	heredoc_redirect(t_data *data, t_cmd *cmd, char *keyword)
 
 	filename = adddot(keyword);
 	fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
+	printf("fd = %d\n", fd);
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, SIG_IGN);
 	pid = fork();

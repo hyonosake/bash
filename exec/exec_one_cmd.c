@@ -14,9 +14,27 @@
 
 void	exec_if_one_cmd(t_data *data, t_cmd *curr_cmd)
 {
-	dup_fd_redirects(data, curr_cmd);
-	if (data->go_next)
-		return ;
+	int		file;
+
+	file = 0;
+	if (curr_cmd->reds[0].type != EMPTY)
+	{
+		file = open(curr_cmd->reds[0].name, O_RDONLY, 0666);
+		if (file == -1)
+			return (perror(curr_cmd->reds[0].name));
+		dup2(file, 0);
+	}
+	if (curr_cmd->reds[1].type != EMPTY)
+	{
+		if (curr_cmd->reds[1].type == FILE_APP)
+			file = open(curr_cmd->reds[1].name, O_WRONLY | O_CREAT | O_APPEND, 0666);
+		else if (curr_cmd->reds[1].type == FILE_TRUNC)
+			file = open(curr_cmd->reds[1].name, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+		if (file == -1)
+			return (perror(curr_cmd->reds[1].name));
+		dup2(file, 1);
+	}
+	close(file);
 	if (is_builtin(curr_cmd))
 	{
 		prev_exec = exec_builtins(data, curr_cmd);
@@ -44,6 +62,9 @@ void	exec_if_one_cmd(t_data *data, t_cmd *curr_cmd)
 	}
 	wait_process(curr_cmd);
 }
+
+
+
 void	one_cmd_token(t_data *data)
 {
 	exec_if_one_cmd(data, data->cmds);

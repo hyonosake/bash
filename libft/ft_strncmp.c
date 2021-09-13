@@ -20,8 +20,6 @@ int					ft_strncmp(const char *s1, const char *s2, size_t n)
 
 	u_s1 = (unsigned char*)s1;
 	u_s2 = (unsigned char*)s2;
-	if (ft_strlen(s1) != ft_strlen(s2))
-		return (1);
 	i = 0;
 	if (n == 0)
 		return (0);

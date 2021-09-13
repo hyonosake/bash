@@ -83,6 +83,8 @@ int	add_full_path(t_data *data, t_cmd *cmds)
 	curr = cmds;
 	while (curr)
 	{
+		if (!curr->path)
+			exit(0);
 		if (symbol_position(curr->path, '\\') == -1 && !is_builtin(curr))
 		{
 			if (find_prog(data->env, &curr->path))

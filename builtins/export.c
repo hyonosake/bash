@@ -50,27 +50,29 @@ static void	print_with_declare(char **sorted_env)
 {
 	static const char	prefix[12] = "declare -x ";
 	int32_t				i;
-	int32_t				j;
 
 	i = 0;
-	while (sorted_env[i])
+	while (*sorted_env != NULL)
 	{
-		j = 0;
-		ft_putstr_fd(prefix, 2);
-		if (symbol_position(sorted_env[i], '=') == -1)
+		write(1, prefix, 11);
+		i = 0;
+		while ((*sorted_env)[i] != 0 && (*sorted_env)[i] != '=')
 		{
-			ft_putstr_fd(sorted_env[i], 2);
-			write(1, "\n", 2);
-			++i;
+			write(1, &(*sorted_env)[i], 1);
+			i++;
+		}
+		if ((*sorted_env)[i] != '=')
+		{
+			write(1, "\n", 1);
+			sorted_env++;
 			continue ;
 		}
-		while (sorted_env[i][j] != '=')
-			write(1, &sorted_env[i][j++], 2);
-		write(1, "=\"", 2);
-		while (sorted_env[i][++j])
-			write(1, &sorted_env[i][j], 2);
+		write(1, &(*sorted_env)[i++], 1);
+		write(1, "\"", 1);
+		while ((*sorted_env)[i])
+			write(1, &(*sorted_env)[i++], 1);
 		write(1, "\"\n", 2);
-		++i;
+		sorted_env++;
 	}
 	
 }
