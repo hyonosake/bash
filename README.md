@@ -27,5 +27,15 @@ This implementation has it's own built-in functions, such as
 - exit with no options
 
 ## Installation
-	• git clone https://github.com/hyonosake/bash && cd bash && make -j8
+	git clone https://github.com/hyonosake/bash && cd bash
+Project requires Readline library installed.
+```sh
+brew install readline
+```
+
+When installed, you will need to make changes in LRD_LIB and LRD_INC flags in Makefile.
+After that, call 
+```sh
+make -j8
+```
 > Makefile supports clean, fclean and re rules
